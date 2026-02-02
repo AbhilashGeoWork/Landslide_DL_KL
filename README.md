@@ -29,6 +29,12 @@ Study area covers the landslide-prone Western Ghats region in Kerala, India char
 - Sentinel-1: VV, VH, VV-VH (band-wise difference)
 - ALOS DEM (Digital Elevation Model): Elevation, Slope, Aspect, TWI (Topographic Wetness Index)
 
+<p align="center">
+  <img src="Figures/Sample.png" width="600"/>
+  <br>
+  <em>Figure 2. A landslide sample used in the study. Pre-event and post-event true-color (RGB) composites are used only for visualization purposes and are not included as inputs for the segmentation models.</em>
+</p>
+
 ### Data Availability
 Due to size constraints, the full dataset is not included in this repository.
 A small sample dataset is provided under `data/sample/`.
