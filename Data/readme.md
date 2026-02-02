@@ -17,31 +17,31 @@ This folder contains a few samples of the data prepared for this study.
     <td>NIR (Post-event)</td>
   </tr>
   <tr>
-    <td>1</td>
-    <td>NIR (Post-event)</td>
+    <td>2</td>
+    <td>BI (Post-event)</td>
   </tr>
   <tr>
-    <td>1</td>
-    <td>NIR (Post-event)</td>
+    <td>3</td>
+    <td>NDVI (Post-event)</td>
   </tr>
   <tr>
-    <td>1</td>
-    <td>NIR (Post-event)</td>
+    <td>4</td>
+    <td>NDWI (Post-event)</td>
   </tr>
   <tr>
-    <td>1</td>
-    <td>NIR (Post-event)</td>
+    <td>5</td>
+    <td>NIR (Pre-event)</td>
   </tr>
   <tr>
-    <td>1</td>
-    <td>NIR (Post-event)</td>
+    <td>6</td>
+    <td>BI (Pre-event)</td>
   </tr>
   <tr>
-    <td>1</td>
-    <td>NIR (Post-event)</td>
+    <td>7</td>
+    <td>NDVI (Pre-event)</td>
   </tr>
   <tr>
-    <td>1</td>
-    <td>NIR (Post-event)</td>
+    <td>8</td>
+    <td>NDWI (Pre-event)</td>
   </tr>  
 </table>
