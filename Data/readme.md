@@ -9,8 +9,8 @@ This folder contains a few samples of the data prepared for this study.
 
 <table align="center">
   <tr>
-    <th>**Index**</th>
-    <th>**Layer**</th>
+    <th>Index</th>
+    <th>Layer</th>
   </tr>
   <tr>
     <td>1</td>
