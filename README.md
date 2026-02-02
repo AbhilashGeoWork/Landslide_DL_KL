@@ -11,3 +11,4 @@ This project implements deep learning–based segmentation models to map landsli
 
 ## Study Area
 Study area covers the landslide-prone Western Ghats region in Kerala, India characterized by dissected hills, valleys, and plateau along with monsoon-driven rainfall.
+![Study Area](Figures/keymap.jpg)
