@@ -14,7 +14,7 @@ Study area covers the landslide-prone Western Ghats region in Kerala, India char
 <p align="center">
   <img src="Figures/KeyMap.jpg" width="600"/>
   <br>
-  <em>Figure 1. Location and physiography of Kerala, India.</em>
+  <em>Figure 1. Location and physiography of Kerala, India. Reddish colours represent the Western Ghats region.</em>
 </p>
 
 ## Dataset
