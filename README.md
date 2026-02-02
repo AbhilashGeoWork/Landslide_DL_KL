@@ -37,4 +37,4 @@ Study area covers the landslide-prone Western Ghats region in Kerala, India char
 
 ### Data Availability
 Due to size constraints, the full dataset is not included in this repository.
-A small sample dataset is provided under `data/sample/`.
+A small sample dataset is provided under `Data`.
