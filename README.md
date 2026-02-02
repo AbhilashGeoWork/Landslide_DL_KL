@@ -17,3 +17,18 @@ Study area covers the landslide-prone Western Ghats region in Kerala, India char
   <em>Figure 1. Location and physiography of Kerala, India.</em>
 </p>
 
+## Dataset
+
+### Sources
+- PlanetScope 3 meter multi-spectral imagery: post-event and pre-event.
+- Sentinel-1 10 meter SAR (Synthetic Aperture Radar) imagery: post-event and pre-event.
+- ALOS DEM 12.5 meter layers.
+
+### Features
+- PlanetScope: NIR (Near-Infrared), BI (Brightness Index), NDVI (Normalized Difference Vegetation Index), NDWI (Normalized Difference Water Index).  
+- Sentinel-1: VV, VH, VV-VH (band-wise difference)
+- ALOS DEM (Digital Elevation Model): Elevation, Slope, Aspect, TWI (Topographic Wetness Index)
+
+### Data Availability
+Due to size constraints, the full dataset is not included in this repository.
+A small sample dataset is provided under `data/sample/`.
