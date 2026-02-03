@@ -30,9 +30,27 @@ Study area covers the landslide-prone Western Ghats region in Kerala, India char
 - ALOS DEM (Digital Elevation Model): Elevation, Slope, Aspect, TWI (Topographic Wetness Index)
 
 <p align="center">
+  <img src="Figures/BI_Formula.png" width="300"/>
+  <br>
+  <em>Figure 2. Equation for Brightness Index (BI), where R, G, and B stands for Red, Green, and Blue bands respectively.</em>
+</p>
+
+<p align="center">
+  <img src="Figures/NDVI_Formula.png" width="300"/>
+  <br>
+  <em>Figure 3. Equation for Normalized Difference Vegetation Index (NDVI), where NIR and R stands for Near-Infrared and Red bands respectively.</em>
+</p>
+
+<p align="center">
+  <img src="Figures/NDWI_Formula.png" width="300"/>
+  <br>
+  <em>Figure 4. Equation for Normalized Difference Water Index (NDWI), where G and NIR stands for Green and Near-Infrared bands respectively.</em>
+</p>
+
+<p align="center">
   <img src="Figures/Sample.png" width="600"/>
   <br>
-  <em>Figure 2. A landslide sample used in the study. Pre-event and post-event true-color (RGB) composites are used only for visualization purposes and are not included as inputs for the segmentation models. All layers are normalized to the range -1 to 1, with -9 as a placeholder for NoData.</em>
+  <em>Figure 5. A landslide sample used in the study. Pre-event and post-event true-color (RGB) composites are used only for visualization purposes and are not included as inputs for the segmentation models. All layers are normalized to the range -1 to 1, with -9 as a placeholder for NoData.</em>
 </p>
 
 ### Data Availability
