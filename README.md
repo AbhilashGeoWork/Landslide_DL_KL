@@ -195,8 +195,8 @@ The detailed architecture for these models can be found in `Model_Architecture.p
     <td>Model 3</td>
     <td>77.63±4.7</td>
     <td>91.48±5.04</td>
-    <td>83.71±0.52</td>
-    <td>72±0.77</td>
+    <td><b>83.71±0.52</b></td>
+    <td><b>72±0.77</b></td>
     <td>82.94±0.48</td>
   </tr>
   <tr>
@@ -248,9 +248,9 @@ The detailed architecture for these models can be found in `Model_Architecture.p
     <td>Model 3<sub>100</sub></td>
     <td>82.21</td>
     <td>90.3</td>
-    <td>86.06</td>
-    <td>75.54</td>
-    <td>85.3</td>
+    <td><b>86.06</b></td>
+    <td><b>75.54</b></td>
+    <td><b>85.3</b></td>
   </tr>
   <tr>
     <td>Model 4<sub>110</sub></td>
