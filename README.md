@@ -62,3 +62,17 @@ Study area covers the landslide-prone Western Ghats region in Kerala, India char
 ### Data Availability
 Due to size constraints, the full dataset is not included in this repository.
 A small sample dataset is provided under `Data`.
+
+## Models
+For this study, 5 variants of the U-Net algorithm were used:
+- U-Net
+- U-Net++
+- U-Net++ with ECA (Efficient Channel Attention)
+- U-Net++ with ECA and Deep Supervision
+- U-Net++ with ECA, Deep Supervision, and ASPP (Atrous Spatial Pyramid Pooling).
+
+For convenience, these models are named Model 1, 2, 3, 4, and 5 respectively in this study.
+
+Since the dataset consists of layers derived from three different sources, each with distinct spatial resolutions and information, three separate encoders are employed in all models, with each encoder processing one set of data layers.
+
+The detailed architecture for these models can be found in `Model_Architecture.py`.
