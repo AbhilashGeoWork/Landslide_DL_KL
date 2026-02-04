@@ -60,10 +60,6 @@ Study area covers the landslide-prone Western Ghats region in Kerala, India char
   <em>Figure 5. A landslide sample used in the study. Pre-event and post-event true-color (RGB) composites are used only for visualization purposes and are not included as inputs for the segmentation models.</em>
 </p>
 
-### Data Availability
-Due to size constraints, the full dataset is not included in this repository.
-A small sample dataset is provided under `Data`.
-
 ## Models
 For this study, 5 variants of the U-Net algorithm were used:
 - U-Net
@@ -78,10 +74,12 @@ Since the dataset consists of layers derived from three different sources, each 
 
 The detailed architecture for these models can be found in `Model_Architecture.py`.
 
-## Training
+## Training and Evaluation
 - 5-Fold Cross Validation (5-Fold CV) was done for each model on the training and validation sets with 48 different sets of parameters.
 - The parameter set that gave the most robust performance for each algorithm was used for final training.
 - Final training was done on the whole dataset after augmentation (90, 180, and 270 degree rotations, vertical and horizontal flips).
+- Models were evaluated qualitatively using visualization of predictions, and quantitatively using metrics.
+- Evaluation metrics: precision, recall, F1 score, IoU (Intersection over Union), MCC (Matthew's Correlation Co-efficient). 
 
 <p align="center"><b>Table 1. Training Parameters.</b></p>
 
@@ -276,6 +274,17 @@ The detailed architecture for these models can be found in `Model_Architecture.p
   <em>Figure 6. Selected landslide samples along with their respective ground truth masks and predictions from each model .</em>
 </p>
 
+
+## Usage
+Use the Jupyter notebook `Model_Testing.ipynb` to read and visualize the sample datasets, load the models with pretrained weights, evaluate the models on the sample dataset, and visualize the results.
+
+## Data Availability
+Due to size constraints, the full dataset is not included in this repository.
+A small sample dataset is provided under `Data`.
+
+## Model Weights
+Pretrained model weights are not tracked in the repository due to size limits. They are provided via GitHub Releases → v0.1.0 (pre-release).
+
 ## Requirements
 - Python 3.10
 - Tensorflow 2.8.0
@@ -287,8 +296,15 @@ cd Landslide_DL_KL
 pip install -r requirements.txt
 ```
 
-## Model Weights
-Pretrained model weights are not tracked in the repository due to size limits. They are provided via GitHub Releases → v0.1.0 (pre-release)
-
 ## License
 This project is licensed under Apache License 2.0.
+
+## Contact
+Abhilash Sreekumar  
+- Email: abhilashgeowork@gmail.com
+- LinkedIn: abhilash-sreekumar
+
+## Acknowledgment
+PlanetScope data were provided by Planet Labs PBC through the Planet Research Program.
+
+Planet Labs PBC. (2024). Planet Application Program Interface: In Space for Life on Earth. https://api.planet.com
