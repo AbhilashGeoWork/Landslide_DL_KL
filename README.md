@@ -275,3 +275,7 @@ The detailed architecture for these models can be found in `Model_Architecture.p
   <br>
   <em>Figure 6. Selected landslide samples along with their respective ground truth masks and predictions from each model .</em>
 </p>
+
+## Requirements
+- Python 3.10
+- Tensorflow 2.8.0
