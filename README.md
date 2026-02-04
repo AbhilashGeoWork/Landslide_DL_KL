@@ -288,4 +288,4 @@ pip install -r requirements.txt
 ```
 
 ## License
-This project is licensed under the Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0).
+This project is licensed under Apache License 2.0.
