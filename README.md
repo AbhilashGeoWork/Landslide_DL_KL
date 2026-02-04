@@ -282,6 +282,6 @@ The detailed architecture for these models can be found in `Model_Architecture.p
 
 ## Installation
 ```bash
-git clone https://github.com/yourusername/landslide-segmentation.git
-cd landslide-segmentation
+git clone https://github.com/AbhilashGeoWork/Landslide_DL_KL.git
+cd Landslide_DL_KL
 pip install -r requirements.txt
