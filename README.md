@@ -279,3 +279,9 @@ The detailed architecture for these models can be found in `Model_Architecture.p
 ## Requirements
 - Python 3.10
 - Tensorflow 2.8.0
+
+## Installation
+```bash
+git clone https://github.com/yourusername/landslide-segmentation.git
+cd landslide-segmentation
+pip install -r requirements.txt
