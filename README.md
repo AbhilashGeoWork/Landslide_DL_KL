@@ -287,5 +287,8 @@ cd Landslide_DL_KL
 pip install -r requirements.txt
 ```
 
+## Model Weights
+Pretrained model weights are not tracked in the repository due to size limits. They are provided via GitHub Releases → v0.1.0 (pre-release)
+
 ## License
 This project is licensed under Apache License 2.0.
