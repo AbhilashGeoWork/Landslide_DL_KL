@@ -1,11 +1,11 @@
-# Landslide Mapping in Kerala From Multi-Sensor Satellite Data Using Deep Learning.
+# Landslide Mapping in Kerala, India From Multi-Sensor Satellite Data Using Deep Learning.
 
 ## Overview
 Landslide detection and mapping are crucial for hazard assessment and disaster management.
 This project implements deep learning–based segmentation models to map landslides from multi-sensor satellite data.
 
 ## Objectives
-- Prepare a landslide dataset from Kerala involving data from multiple satellite sensors.
+- Prepare a landslide dataset from Kerala, India involving data from multiple satellite sensors.
 - Implement deep learning models for mapping landslides from this dataset.
 - Compare model performance using visual comparison and evaluation metrics. 
 
@@ -22,12 +22,12 @@ Study area covers the landslide-prone Western Ghats region in Kerala, India char
 ### Sources
 - PlanetScope 3 meter multi-spectral imagery: post-event and pre-event.
 - Sentinel-1 10 meter SAR (Synthetic Aperture Radar) imagery: post-event and pre-event.
-- ALOS DEM 12.5 meter layers.
+- ALOS DEM (Digital Elevation Model) 12.5 meter layers.
 
 ### Features
 - PlanetScope: NIR (Near-Infrared), BI (Brightness Index), NDVI (Normalized Difference Vegetation Index), NDWI (Normalized Difference Water Index). Blue (B), green (G), and red (R) bands were removed from the data due to high correlation in between them as well as with the indices, which can lead to redundancy.
 - Sentinel-1: VV, VH, VV-VH (band-wise difference)
-- ALOS DEM (Digital Elevation Model): Elevation, Slope, Aspect, TWI (Topographic Wetness Index)
+- ALOS DEM: Elevation, Slope, Aspect, TWI (Topographic Wetness Index)
 
 <p align="center">
   <img src="Figures/BI_Formula.png" width="300"/>
@@ -51,7 +51,9 @@ Study area covers the landslide-prone Western Ghats region in Kerala, India char
 - 700 samples were digitized from the study area (350 landslide and 350 non-landslide samples).
 - They were divided into 400 samples for training (200 landslide & 200 non-landslide), 200 samples for testing (100 each) and 100 for validation (50 each).
 - For each sample, the Planetscope layers (3 meter) were tiled to 128x128 patches (2<sup>7</sup>), covering an area of 384 meter in length and width (128 × 3). The Sentinel-1 SAR layers (10 meter) covered the same spatial extent with 38x38 tiles (≈384 ÷ 10) while ALOS DEM layers (12.5 meter) covered it with 31x31 tiles (≈384 ÷ 12.5). To ensure dimensional consistency and compatibility across inputs, both DEM and SAR layers were resampled to a standardized dimension of 32x32 (2<sup>5</sup>) using the nearest neighbour interpolation method.
-- The values in each layer / band was normalized to the range of -1 to 1, with -9 being the placeholder for pixels with no data (Nan, 0, -9999). Since NDVI, aspect-sin, and aspect-cos are already in the range of -1 to 1, normalization was not applied to them.
+- The values in each channel / band was normalized to the range of -1 to 1, with -9 being the placeholder for pixels with no data (Nan, 0, -9999).
+- Aspect is an angular (circular) variable with 0 to 360 degree range. Since min-max normalization would misrepresent the directional information in it, aspect was transformed using its sine and cosine components, which has the range -1 to 1 and capture the circular nature.
+- Since NDVI and NDWI are already in the range of -1 to 1, normalization was not applied to them.
 
 <p align="center">
   <img src="Figures/Sample.png" width="600"/>
@@ -109,7 +111,7 @@ The detailed architecture for these models can be found in `Model_Architecture.p
   </tr>
   <tr>
     <td>Loss function</td>
-    <td>Tversky los</td>
+    <td>Tversky loss</td>
   </tr>  
 </table>
 
@@ -159,7 +161,7 @@ The detailed architecture for these models can be found in `Model_Architecture.p
 
 ## Results
 - Model 3 (U-Net++ w/ ECA) gave the best performance in the final training with 90.3% Recall and 86% F1 Score. It also had the least uncertainty in the 5-Fold CV with 83.71±0.52 F1 Score.
-- Some of the test samples along with their landslide mask and model predictions are plotted below (Figure 5).
+- Figure 5 shows some of the test samples along with their landslide mask and model predictions. This also shows exceptional performance from Model 3.
 
 <p align="center"><b>Table 3. 5-Fold CV Results.</b></p>
 
@@ -304,6 +306,5 @@ Abhilash Sreekumar
 - LinkedIn: abhilash-sreekumar
 
 ## Acknowledgment
-PlanetScope data were provided by Planet Labs PBC through the Planet Research Program.
-
-Planet Labs PBC. (2024). Planet Application Program Interface: In Space for Life on Earth. https://api.planet.com
+- This project was done under the supervision and guidance of **Dr. Hemalatha T.** and **Maneesha Vinodini Ramesh** (*Center  for Wireless Networks and Applications (WNA), Amrita Viswa Vidyapeetham, Amritapuri, India*) in collaboration with **Dr. Sansar Raj Meena** (*Università degli Studi di Padova*).
+- PlanetScope data were provided by Planet Labs PBC through the Planet Research Program. Citation: Planet Labs PBC. (2024). Planet Application Program Interface: In Space for Life on Earth. https://api.planet.com
