@@ -35,3 +35,16 @@ def MCC(y_true, y_pred):
     numerator = tp * tn - fp * fn
     denominator = tf.sqrt((tp + fp) * (tp + fn) * (tn + fp) * (tn + fn))
     return numerator / (denominator + tf.keras.backend.epsilon())
+
+# Function for RGB stretch (-1 to 1 with -9 as Nan)
+def stretch_rgb(rgb):
+    rgb = rgb.astype(np.float32)
+    out = np.zeros_like(rgb)
+
+    for b in range(3):
+        band = rgb[:, :, b]
+        valid = band[band != -9]
+        if valid.size > 0:
+            mn, mx = valid.min(), valid.max()
+            out[:, :, b] = (band - mn) / (mx - mn + 1e-6)
+    return out
