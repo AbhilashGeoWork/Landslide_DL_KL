@@ -285,3 +285,7 @@ The detailed architecture for these models can be found in `Model_Architecture.p
 git clone https://github.com/AbhilashGeoWork/Landslide_DL_KL.git
 cd Landslide_DL_KL
 pip install -r requirements.txt
+```
+
+## License
+This project is licensed under the Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0).
