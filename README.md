@@ -9,12 +9,18 @@ This project implements deep learning–based segmentation models to map landsli
 - Implement deep learning models for mapping landslides from this dataset.
 - Compare model performance using visual comparison and evaluation metrics. 
 
+<p align="center">
+  <img src="Figures/Methodology.png" width="600"/>
+  <br>
+  <em>Figure 1. Block diagram showing the methodology of the study.</em>
+</p>
+
 ## Study Area
 Study area covers the landslide-prone Western Ghats region in Kerala, India characterized by dissected hills, valleys, and plateau along with monsoon-driven rainfall.
 <p align="center">
   <img src="Figures/KeyMap.jpg" width="600"/>
   <br>
-  <em>Figure 1. Location and physiography of Kerala, India. Reddish colours represent the Western Ghats region.</em>
+  <em>Figure 2. Location and physiography of Kerala, India. Reddish colours represent the Western Ghats region.</em>
 </p>
 
 ## Dataset
@@ -32,19 +38,19 @@ Study area covers the landslide-prone Western Ghats region in Kerala, India char
 <p align="center">
   <img src="Figures/BI_Formula.png" width="300"/>
   <br>
-  <em>Figure 2. Equation for Brightness Index (BI), where R, G, and B stands for Red, Green, and Blue bands respectively.</em>
+  <em>Figure 3. Equation for Brightness Index (BI), where R, G, and B stands for Red, Green, and Blue bands respectively.</em>
 </p>
 
 <p align="center">
   <img src="Figures/NDVI_Formula.png" width="300"/>
   <br>
-  <em>Figure 3. Equation for Normalized Difference Vegetation Index (NDVI), where NIR and R stands for Near-Infrared and Red bands respectively.</em>
+  <em>Figure 4. Equation for Normalized Difference Vegetation Index (NDVI), where NIR and R stands for Near-Infrared and Red bands respectively.</em>
 </p>
 
 <p align="center">
   <img src="Figures/NDWI_Formula.png" width="300"/>
   <br>
-  <em>Figure 4. Equation for Normalized Difference Water Index (NDWI), where G and NIR stands for Green and Near-Infrared bands respectively.</em>
+  <em>Figure 5. Equation for Normalized Difference Water Index (NDWI), where G and NIR stands for Green and Near-Infrared bands respectively.</em>
 </p>
 
 ### Data Preprocessing
@@ -58,7 +64,7 @@ Study area covers the landslide-prone Western Ghats region in Kerala, India char
 <p align="center">
   <img src="Figures/Sample.png" width="600"/>
   <br>
-  <em>Figure 5. A landslide sample used in the study. Pre-event and post-event true-color (RGB) composites are used only for visualization purposes and are not included as inputs for the segmentation models.</em>
+  <em>Figure 6. A landslide sample used in the study. Pre-event and post-event true-color (RGB) composites are used only for visualization purposes and are not included as inputs for the segmentation models.</em>
 </p>
 
 ## Models
@@ -73,7 +79,23 @@ For convenience, these models are named Model 1, 2, 3, 4, and 5 respectively in 
 
 Since the dataset consists of layers derived from three different sources, each with distinct spatial resolutions and information, three separate encoders are employed in all models, with each encoder processing one set of data layers.
 
-The detailed architecture for these models can be found in `Model_Architecture.py`.
+<p align="center">
+  <img src="Figures/UNet.png" width="600"/>
+  <br>
+  <em>Figure 7. Architecture of the Triple Encoder U-Net employed in this study.</em>
+</p>
+
+<p align="center">
+  <img src="Figures/UNet++.png" width="600"/>
+  <br>
+  <em>Figure 8. Architecture of the Triple Encoder U-Net++ employed in this study.</em>
+</p>
+
+<p align="center">
+  <img src="Figures/ASPP_ECA.png" width="600"/>
+  <br>
+  <em>Figure 9. Diagram of ASPP and ECA used in this study. a). ASPP; b). ECA</em>
+</p>
 
 ## Training and Evaluation
 - 5-Fold Cross Validation (5-Fold CV) was done for each model on the training and validation sets with 48 different sets of parameters.
