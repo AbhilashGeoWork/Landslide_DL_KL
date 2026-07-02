@@ -1,12 +1,12 @@
-# Landslide Mapping in Kerala, India From Multi-Sensor Satellite Data Using Deep Learning.
+# Landslide Mapping in Kerala, India From Multi-Modal Remote Sensing Data Using Branched Encoder U-Net
 
 ## Overview
 Landslide detection and mapping are crucial for hazard assessment and disaster management.
-This project implements deep learning–based segmentation models to map landslides from multi-sensor satellite data.
+This project implements deep learning–based branched segmentation models to map landslides from multi-sensor satellite data.
 
 ## Objectives
 - Prepare a landslide dataset from Kerala, India involving data from multiple satellite sensors.
-- Implement deep learning models for mapping landslides from this dataset.
+- Implement branched U-Net models for mapping landslides from this dataset.
 - Compare model performance using visual comparison and evaluation metrics. 
 
 <p align="center">
@@ -18,9 +18,9 @@ This project implements deep learning–based segmentation models to map landsli
 ## Study Area
 Study area covers the landslide-prone Western Ghats region in Kerala, India characterized by dissected hills, valleys, and plateau along with monsoon-driven rainfall.
 <p align="center">
-  <img src="Figures/KeyMap.jpg" width="600"/>
+  <img src="Figures/KeyMap.png" width="600"/>
   <br>
-  <em>Figure 2. Location and physiography of Kerala, India. Reddish colours represent the Western Ghats region.</em>
+  <em>Figure 2. a). Location and physiography of Kerala, India; b). Geomorphology map showing the Western Ghats region in Kerala.</em>
 </p>
 
 ## Dataset
@@ -56,7 +56,7 @@ Study area covers the landslide-prone Western Ghats region in Kerala, India char
 ### Data Preprocessing
 - 700 samples were digitized from the study area (350 landslide and 350 non-landslide samples).
 - They were divided into 400 samples for training (200 landslide & 200 non-landslide), 200 samples for testing (100 each) and 100 for validation (50 each).
-- For each sample, the Planetscope layers (3 meter) were tiled to 128x128 patches (2<sup>7</sup>), covering an area of 384 meter in length and width (128 × 3). The Sentinel-1 SAR layers (10 meter) covered the same spatial extent with 38x38 tiles (≈384 ÷ 10) while ALOS DEM layers (12.5 meter) covered it with 31x31 tiles (≈384 ÷ 12.5). To ensure dimensional consistency and compatibility across inputs, both DEM and SAR layers were resampled to a standardized dimension of 32x32 (2<sup>5</sup>) using the nearest neighbour interpolation method.
+- For each sample, the Planetscope layers (3 meter) were tiled to 128x128 patches (2<sup>7</sup>), covering an area of 384 meter in length and width (128 × 3). The Sentinel-1 SAR layers (10 meter) covered the same spatial extent with 38x38 tiles (≈384 ÷ 10) while ALOS DEM layers (12.5 meter) covered it with 31x31 tiles (≈384 ÷ 12.5). To ensure dimensional consistency and compatibility across inputs, both DEM and SAR layers were resampled to a standardized dimension of 32x32 (2<sup>5</sup>) using the bilinear interpolation method.
 - The values in each channel / band was normalized to the range of -1 to 1, with -9 being the placeholder for pixels with no data (Nan, 0, -9999).
 - Aspect is an angular (circular) variable with 0 to 360 degree range. Since min-max normalization would misrepresent the directional information in it, aspect was transformed using its sine and cosine components, which has the range -1 to 1 and capture the circular nature.
 - Since NDVI and NDWI are already in the range of -1 to 1, normalization was not applied to them.
@@ -64,45 +64,41 @@ Study area covers the landslide-prone Western Ghats region in Kerala, India char
 <p align="center">
   <img src="Figures/Sample.png" width="600"/>
   <br>
-  <em>Figure 6. A landslide sample used in the study. Pre-event and post-event true-color (RGB) composites are used only for visualization purposes and are not included as inputs for the segmentation models.</em>
+  <em>Figure 6. Input layers for a sample landslide patch along with the binary landslide mask. Landslide and non-landslide pixels in the mask are shown in white and black colors respectively. True-color composites (RGB) are used only for visualization purposes and are not model inputs.</em>
 </p>
 
 ## Models
-For this study, 5 variants of the U-Net algorithm were used:
-- U-Net
-- U-Net++
-- U-Net++ with ECA (Efficient Channel Attention)
-- U-Net++ with ECA and Deep Supervision
-- U-Net++ with ECA, Deep Supervision, and ASPP (Atrous Spatial Pyramid Pooling).
+For this study, 3 variants of the branched U-Net algorithm were used:
+- Triple Encoder U-Net
+- Triple Encoder U-Net++
+- Triple Encoder U-Net++ with ECA (Efficient Channel Attention)
 
-For convenience, these models are named Model 1, 2, 3, 4, and 5 respectively in this study.
-
-Since the dataset consists of layers derived from three different sources, each with distinct spatial resolutions and information, three separate encoders are employed in all models, with each encoder processing one set of data layers.
+For convenience, these models will be often called UNet1, UNet2, and UNet3 respectively.
 
 <p align="center">
-  <img src="Figures/UNet.png" width="600"/>
+  <img src="Figures/Triple_UNet.png" width="600"/>
   <br>
   <em>Figure 7. Architecture of the Triple Encoder U-Net employed in this study.</em>
 </p>
 
 <p align="center">
-  <img src="Figures/UNet++.png" width="600"/>
+  <img src="Figures/Triple_UNet++.png" width="600"/>
   <br>
   <em>Figure 8. Architecture of the Triple Encoder U-Net++ employed in this study.</em>
 </p>
 
 <p align="center">
-  <img src="Figures/ASPP_ECA.png" width="600"/>
+  <img src="Figures/ECA.png" width="600"/>
   <br>
-  <em>Figure 9. Diagram of ASPP and ECA used in this study. a). ASPP; b). ECA</em>
+  <em>Figure 9. Diagram of ECA used in this study.</em>
 </p>
 
 ## Training and Evaluation
 - 5-Fold Cross Validation (5-Fold CV) was done for each model on the training and validation sets with 48 different sets of parameters.
-- The parameter set that gave the most robust performance for each algorithm was used for final training.
+- The parameter set that gave the most robust performance (metrics with least standard deviation) for each algorithm was used for final training.
 - Final training was done on the whole dataset after augmentation (90, 180, and 270 degree rotations, vertical and horizontal flips).
 - Models were evaluated qualitatively using visualization of predictions, and quantitatively using metrics.
-- Evaluation metrics: precision, recall, F1 score, IoU (Intersection over Union), MCC (Matthew's Correlation Co-efficient). 
+- Evaluation metrics: precision, recall, F1 score, IoU (Intersection over Union), MCC (Matthew's Correlation Coefficient). 
 
 <p align="center"><b>Table 1. Training Parameters.</b></p>
 
@@ -148,42 +144,29 @@ Since the dataset consists of layers derived from three different sources, each 
     <th>Learning Rate</th>
   </tr>
   <tr>
-    <td>Model 1</td>
-    <td>U-Net</td>
+    <td>Unet1</td>
+    <td>Triple Encoder U-Net</td>
     <td>16</td>
     <td>4</td>
     <td>1e-4</td>
   </tr>
   <tr>
-    <td>Model 2</td>
-    <td>U-Net++</td>
+    <td>UNet2</td>
+    <td>Triple Encoder U-Net++</td>
     <td>32</td>
     <td>8</td>
     <td>5e-4</td>  </tr>
   <tr>
-    <td>Model 3</td>
-    <td>U-Net++ w/ ECA</td>
+    <td>UNet3</td>
+    <td>Triple Encoder U-Net++ w/ ECA</td>
     <td>32</td>
     <td>32</td>
     <td>5e-4</td>  </tr>
-  <tr>
-    <td>Model 4</td>
-    <td>U-Net++ w/ ECA, Deep Supervision</td>
-    <td>8</td>
-    <td>4</td>
-    <td>5e-4</td>  </tr>
-  <tr>
-    <td>Model 5</td>
-    <td>U-Net++ w/ ECA, Deep Supervision, ASPP</td>
-    <td>32</td>
-    <td>4</td>
-    <td>1e-4</td> 
-    </tr>
 </table>
 
 ## Results
-- Model 3 (U-Net++ w/ ECA) gave the best performance in the final training with 90.3% Recall and 86% F1 Score. It also had the least uncertainty in the 5-Fold CV with 83.71±0.52 F1 Score.
-- Figure 5 shows some of the test samples along with their landslide mask and model predictions. This also shows exceptional performance from Model 3.
+- UNet3 (Triple Encoder U-Net++ w/ ECA) gave the best performance in the final training with 90.3% Recall and 86% F1 Score. It also was the most robust in the 5-Fold CV with 83.71±0.52 F1 Score.
+- Figure 5 shows some of the test samples along with their landslide mask and model predictions. This also shows exceptional performance from UNet3.
 
 <p align="center"><b>Table 3. 5-Fold CV Results.</b></p>
 
@@ -197,7 +180,7 @@ Since the dataset consists of layers derived from three different sources, each 
     <th>MCC</th>
   </tr>
   <tr>
-    <td>Model 1</td>
+    <td>UNet1</td>
     <td>80±1.9</td>
     <td>84.7±2.3</td>
     <td>82.24±1</td>
@@ -205,7 +188,7 @@ Since the dataset consists of layers derived from three different sources, each 
     <td>81.02±0.92</td>
   </tr>
   <tr>
-    <td>Model 2</td>
+    <td>UNet2</td>
     <td>80.8±2.7</td>
     <td>90.06±2.5</td>
     <td>85.11±1</td>
@@ -213,28 +196,12 @@ Since the dataset consists of layers derived from three different sources, each 
     <td>84.19±0.89</td>
   </tr>
   <tr>
-    <td>Model 3</td>
+    <td>UNet3</td>
     <td>77.63±4.7</td>
     <td>91.48±5.04</td>
     <td><b>83.71±0.52</b></td>
     <td><b>72±0.77</b></td>
-    <td>82.94±0.48</td>
-  </tr>
-  <tr>
-    <td>Model 4</td>
-    <td>81.46±2.4</td>
-    <td>88.85±1.2</td>
-    <td>84.97±0.8</td>
-    <td>73.88±1.2</td>
-    <td>83.96±0.98</td>
-  </tr>
-  <tr>
-    <td>Model 5</td>
-    <td>81.33±2.8</td>
-    <td>88.33±1.02</td>
-    <td>84.64±1.1</td>
-    <td>73.4±1.6</td>
-    <td>83.62±1.1</td> 
+    <td><b>82.94±0.48</b></td>
   </tr>
 </table>
 
@@ -250,7 +217,7 @@ Since the dataset consists of layers derived from three different sources, each 
     <th>MCC</th>
   </tr>
   <tr>
-    <td>Model 1<sub>200</sub></td>
+    <td>UNet1<sub>200</sub></td>
     <td>83.91</td>
     <td>84.06</td>
     <td>84</td>
@@ -258,7 +225,7 @@ Since the dataset consists of layers derived from three different sources, each 
     <td>83.03</td>
   </tr>
   <tr>
-    <td>Model 2<sub>100</sub></td>
+    <td>UNet2<sub>100</sub></td>
     <td>79.86</td>
     <td>91.28</td>
     <td>85.2</td>
@@ -266,33 +233,17 @@ Since the dataset consists of layers derived from three different sources, each 
     <td>84.45</td>
   </tr>
   <tr>
-    <td>Model 3<sub>100</sub></td>
+    <td>UNet3<sub>100</sub></td>
     <td>82.21</td>
     <td>90.3</td>
     <td><b>86.06</b></td>
     <td><b>75.54</b></td>
     <td><b>85.3</b></td>
   </tr>
-  <tr>
-    <td>Model 4<sub>110</sub></td>
-    <td>81.12</td>
-    <td>87.9</td>
-    <td>84.38</td>
-    <td>72.98</td>
-    <td>83.48</td>
-  </tr>
-  <tr>
-    <td>Model 5<sub>200</sub></td>
-    <td>83.47</td>
-    <td>87.91</td>
-    <td>85.63</td>
-    <td>74.87</td>
-    <td>84.78</td> 
-  </tr>
 </table>
 
 <p align="center">
-  <img src="Figures/output.png" width="600"/>
+  <img src="Figures/Outputs.png" width="600"/>
   <br>
   <em>Figure 6. Selected landslide samples along with their respective ground truth masks and predictions from each model .</em>
 </p>
