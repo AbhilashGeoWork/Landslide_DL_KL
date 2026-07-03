@@ -28,7 +28,7 @@ Study area covers the landslide-prone Western Ghats region in Kerala, India char
 ### Sources
 - PlanetScope 3 meter multi-spectral imagery: post-event and pre-event.
 - Sentinel-1 10 meter SAR (Synthetic Aperture Radar) imagery: post-event and pre-event.
-- ALOS DEM (Digital Elevation Model) 12.5 meter layers.
+- ALOS DEM (Digital Elevation Model) 12.5 meter terrain layers.
 
 ### Features
 - PlanetScope: NIR (Near-Infrared), BI (Brightness Index), NDVI (Normalized Difference Vegetation Index), NDWI (Normalized Difference Water Index). Blue (B), green (G), and red (R) bands were removed from the data due to high correlation in between them as well as with the indices, which can lead to redundancy.
@@ -279,5 +279,5 @@ Abhilash Sreekumar
 - LinkedIn: abhilash-sreekumar
 
 ## Acknowledgment
-- This project was done under the supervision and guidance of **Dr. Hemalatha T.** and **Maneesha Vinodini Ramesh** (*Center  for Wireless Networks and Applications (WNA), Amrita Viswa Vidyapeetham, Amritapuri, India*) in collaboration with **Dr. Sansar Raj Meena** (*Università degli Studi di Padova*).
+- This project was done under the supervision and guidance of **Dr. Hemalatha T.** and **Dr. Maneesha Vinodini Ramesh** (*Center  for Wireless Networks and Applications (WNA), Amrita Viswa Vidyapeetham, Amritapuri, India*) in collaboration with **Dr. Sansar Raj Meena** (*Università degli Studi di Padova*).
 - PlanetScope data were provided by Planet Labs PBC through the Planet Research Program. Citation: Planet Labs PBC. (2024). Planet Application Program Interface: In Space for Life on Earth. https://api.planet.com
