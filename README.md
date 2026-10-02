@@ -56,8 +56,8 @@ Study area covers the landslide-prone Western Ghats region in Kerala, India char
 ### Data Preprocessing
 - 700 samples were digitized from the study area (350 landslide and 350 non-landslide samples).
 - They were divided into 400 samples for training (200 landslide & 200 non-landslide), 200 samples for testing (100 each) and 100 for validation (50 each).
-- For each sample, the Planetscope layers (3 meter) were tiled to 128x128 patches (2<sup>7</sup>), covering an area of 384 meter in length and width (128 × 3). The Sentinel-1 SAR layers (10 meter) covered the same spatial extent with 38x38 tiles (≈384 ÷ 10) while ALOS DEM layers (12.5 meter) covered it with 31x31 tiles (≈384 ÷ 12.5). To ensure dimensional consistency and compatibility across inputs, both DEM and SAR layers were resampled to a standardized dimension of 32x32 (2<sup>5</sup>) using the bilinear interpolation method.
-- The values in each channel / band was normalized to the range of -1 to 1, with -9 being the placeholder for pixels with no data (Nan, 0, -9999).
+- For each sample, the Planetscope layers (3 meter) were tiled to 128x128 patches (2<sup>7</sup>), covering an area of 384 meter in length and width (128 × 3). The Sentinel-1 SAR layers (10 meter) covered the same spatial extent with 38x38 tiles (≈384 ÷ 10) while ALOS DEM layers (12.5 meter) covered it with 31x31 tiles (≈384 ÷ 12.5). To ensure dimensional consistency and compatibility across inputs, both DEM and SAR layers were resampled to a standardized dimension of 32x32 (2<sup>5</sup>) using bilinear interpolation.
+- The values in each channel / band was normalized to the range of -1 to 1, with -9 being the placeholder for pixels with no data (Nan, -9999).
 - Aspect is an angular (circular) variable with 0 to 360 degree range. Since min-max normalization would misrepresent the directional information in it, aspect was transformed using its sine and cosine components, which has the range -1 to 1 and capture the circular nature.
 - Since NDVI and NDWI are already in the range of -1 to 1, normalization was not applied to them.
 
@@ -165,7 +165,7 @@ For convenience, these models will be often called UNet1, UNet2, and UNet3 respe
 </table>
 
 ## Results
-- UNet3 (Triple Encoder U-Net++ w/ ECA) gave the best performance in the final training with 90.3% Recall and 86% F1 Score. It also was the most robust in the 5-Fold CV with 83.71±0.52 F1 Score.
+- UNet3 (Triple Encoder U-Net++ w/ ECA) gave the best performance in the final training with 90.35% Recall and 86.17% F1 Score. It also was the most robust in the 5-Fold CV with 83.71±0.52 F1 Score.
 - Figure 5 shows some of the test samples along with their landslide mask and model predictions. This also shows exceptional performance from UNet3.
 
 <p align="center"><b>Table 3. 5-Fold CV Results.</b></p>
@@ -218,27 +218,27 @@ For convenience, these models will be often called UNet1, UNet2, and UNet3 respe
   </tr>
   <tr>
     <td>UNet1<sub>200</sub></td>
-    <td>83.91</td>
-    <td>84.06</td>
-    <td>84</td>
-    <td>72.39</td>
-    <td>83.03</td>
+    <td>84.1</td>
+    <td>84.25</td>
+    <td>84.17</td>
+    <td>72.68</td>
+    <td>83.23</td>
   </tr>
   <tr>
     <td>UNet2<sub>100</sub></td>
-    <td>79.86</td>
-    <td>91.28</td>
-    <td>85.2</td>
-    <td>74.2</td>
-    <td>84.45</td>
+    <td>79.95</td>
+    <td>91.01</td>
+    <td>85.12</td>
+    <td>74.1</td>
+    <td>84.37</td>
   </tr>
   <tr>
     <td>UNet3<sub>100</sub></td>
-    <td>82.21</td>
-    <td>90.3</td>
-    <td><b>86.06</b></td>
-    <td><b>75.54</b></td>
-    <td><b>85.3</b></td>
+    <td>82.37</td>
+    <td>90.35</td>
+    <td><b>86.17</b></td>
+    <td><b>75.71</b></td>
+    <td><b>85.41</b></td>
   </tr>
 </table>
 
